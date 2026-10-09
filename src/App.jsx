@@ -400,7 +400,11 @@ function BillingCounter() {
     [2.35, '#d8c398', 0.24],
   ];
   return (
-    <group position={[-2.1, 0, 0]}>
+    <group
+      name="left-side-general-store-checkout"
+      position={[-3.31, 0, 3.3]}
+      rotation={[0, Math.PI / 2, 0]}
+    >
       <Label position={[1.6, 3.35, 1.05]} color="#c27722">GENERAL STORE</Label>
       {/* Billing counter */}
       <Box position={[1.57, 0.64, 1.73]} size={[2.48, 1.16, 0.84]} color={palette.wood} radius={0.055} />
@@ -424,7 +428,9 @@ function BillingCounter() {
       ))}
       <Cylinder position={[1.4, 1.46, 1.92]} radius={0.11} height={0.3} color="#cf7d39" />
       <Cylinder position={[1.68, 1.46, 1.92]} radius={0.11} height={0.3} color="#62936a" />
-      <ShopkeeperCharacter />
+      <group position={[0, 0, 1.05]}>
+        <ShopkeeperCharacter />
+      </group>
     </group>
   );
 }
