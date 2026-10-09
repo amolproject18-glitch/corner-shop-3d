@@ -11,4 +11,4 @@ npm run dev
 
 The initial view is a roof-off, front-wall-off cutaway. Use the controls in the scene to reveal either part of the room. Drag to orbit and scroll to zoom.
 
-The scene has exactly two character groups: the seated online service operator behind the staff-only office door and the standing general-store shopkeeper. The glazed door is closed; the office is marked “No Public Entry.”
+The scene has exactly two character groups: the seated online service operator in a small, open service nook at the far end, screened only by waist-high partitions, and the standing general-store shopkeeper at the right-side checkout, facing left. The operator and workstation remain visible above the low partitions; the staff-only opening is marked “No Customer Entry.”

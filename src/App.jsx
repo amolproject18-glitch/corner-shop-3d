@@ -211,8 +211,8 @@ function Monitor({ position }) {
 function ServiceArea() {
   const paperColors = ['#f4ede0', '#d7e4df', '#eacb9e', '#d4dbee'];
   return (
-    <group position={[0, 0, -7.1]}>
-      <Label position={[-1.72, 3.32, -0.02]} color="#237b7b">ONLINE SERVICE CENTER · LOCKED REAR OFFICE</Label>
+    <group position={[0, 0, -8.5]}>
+      <Label position={[-1.72, 3.32, -0.02]} color="#237b7b">ONLINE SERVICES · OPEN STAFF AREA</Label>
       {/* Computer work desk */}
       <Box position={[-1.68, 1.06, 0.28]} size={[2.24, 0.13, 1.35]} color={palette.woodLight} radius={0.06} />
       <Box position={[-1.68, 0.55, -0.22]} size={[2.08, 0.92, 0.16]} color={palette.wood} radius={0.025} />
@@ -401,9 +401,9 @@ function BillingCounter() {
   ];
   return (
     <group
-      name="left-side-general-store-checkout"
-      position={[-3.31, 0, 3.3]}
-      rotation={[0, Math.PI / 2, 0]}
+      name="right-side-general-store-checkout"
+      position={[3.03, 0, 0.53]}
+      rotation={[0, -Math.PI / 2, 0]}
     >
       <Label position={[1.6, 3.35, 1.05]} color="#c27722">GENERAL STORE</Label>
       {/* Billing counter */}
@@ -440,7 +440,8 @@ function ShopRoom({ showRoof, showFrontWall }) {
   const roomLength = 15;
   const roomFrontZ = 4.52;
   const roomBackZ = -10.48;
-  const serviceRoomFrontZ = -6.05;
+  const serviceRoomFrontZ = -7.45;
+  const servicePartitionHeight = 0.9;
 
   return (
     <group>
@@ -475,25 +476,20 @@ function ShopRoom({ showRoof, showFrontWall }) {
       <ServiceArea />
       <BillingCounter />
 
-      {/* Locked staff-only room separates the service operator from store customers */}
-      <Box position={[-0.08, 2.9, (serviceRoomFrontZ + roomBackZ) / 2]} size={[0.14, 5.8, serviceRoomFrontZ - roomBackZ]} color="#e4d6c0" />
-      <Box position={[-2.61, 2.9, serviceRoomFrontZ]} size={[0.94, 5.8, 0.16]} color="#e4d6c0" />
-      <Box position={[-0.6, 2.9, serviceRoomFrontZ]} size={[0.96, 5.8, 0.16]} color="#e4d6c0" />
-      <Box position={[-1.6, 5.25, serviceRoomFrontZ]} size={[1.04, 0.55, 0.16]} color="#e4d6c0" />
-      {/* Closed door: a solid lower panel and glazed upper panel keep the room private but visible. */}
-      <Box position={[-1.6, 0.7, serviceRoomFrontZ + 0.13]} size={[0.98, 1.3, 0.12]} color="#806044" radius={0.025} />
-      <GlassPanel position={[-1.6, 1.89, serviceRoomFrontZ + 0.15]} size={[0.87, 0.98, 0.035]} />
-      <Box position={[-1.6, 1.39, serviceRoomFrontZ + 0.18]} size={[0.91, 0.07, 0.06]} color="#b48b60" radius={0.012} />
-      <Box position={[-1.6, 2.4, serviceRoomFrontZ + 0.18]} size={[0.91, 0.07, 0.06]} color="#b48b60" radius={0.012} />
-      <Box position={[-2.06, 1.89, serviceRoomFrontZ + 0.18]} size={[0.06, 0.98, 0.06]} color="#b48b60" />
-      <Box position={[-1.14, 1.89, serviceRoomFrontZ + 0.18]} size={[0.06, 0.98, 0.06]} color="#b48b60" />
-      <Box position={[-1.27, 1.04, serviceRoomFrontZ + 0.2]} size={[0.12, 0.2, 0.035]} color="#d3ae69" radius={0.018} />
-      <Cylinder position={[-1.27, 1.04, serviceRoomFrontZ + 0.23]} radius={0.045} height={0.04} color="#785633" rotation={[Math.PI / 2, 0, 0]} />
-      <Label position={[-1.6, 2.88, serviceRoomFrontZ + 0.23]} color="#9a422f">LOCKED · PRIVATE STAFF ONLY</Label>
-      <Label position={[-1.6, 0.3, serviceRoomFrontZ + 0.23]} color="#9a422f">NO PUBLIC ENTRY</Label>
+      {/* Waist-height staff partitions define the service nook without enclosing it. */}
+      <Box position={[-0.08, servicePartitionHeight / 2, (serviceRoomFrontZ + roomBackZ) / 2]} size={[0.14, servicePartitionHeight, serviceRoomFrontZ - roomBackZ]} color="#e4d6c0" />
+      <Box position={[-0.08, servicePartitionHeight + 0.04, (serviceRoomFrontZ + roomBackZ) / 2]} size={[0.2, 0.08, serviceRoomFrontZ - roomBackZ + 0.08]} color="#b48b60" />
+      <Box position={[-2.61, servicePartitionHeight / 2, serviceRoomFrontZ]} size={[0.94, servicePartitionHeight, 0.16]} color="#e4d6c0" />
+      <Box position={[-0.6, servicePartitionHeight / 2, serviceRoomFrontZ]} size={[0.96, servicePartitionHeight, 0.16]} color="#e4d6c0" />
+      <Box position={[-2.61, servicePartitionHeight + 0.04, serviceRoomFrontZ]} size={[0.98, 0.08, 0.2]} color="#b48b60" />
+      <Box position={[-0.6, servicePartitionHeight + 0.04, serviceRoomFrontZ]} size={[1, 0.08, 0.2]} color="#b48b60" />
+      {/* Low access rail marks the staff-only opening without enclosing the office. */}
+      <Box position={[-1.6, 0.68, serviceRoomFrontZ]} size={[1.04, 0.12, 0.1]} color="#b48b60" radius={0.025} />
+      <Label position={[-1.6, 1.35, serviceRoomFrontZ + 0.23]} color="#9a422f">OPEN SERVICE NOOK · STAFF ONLY</Label>
+      <Label position={[-1.6, 0.36, serviceRoomFrontZ + 0.23]} color="#9a422f">NO CUSTOMER ENTRY</Label>
 
       {/* Area markers on the shared open floor */}
-      <Box position={[-1.64, 0.035, -8.65]} size={[2.5, 0.025, 0.06]} color="#4eaaa2" />
+      <Box position={[-1.64, 0.035, -8.5]} size={[2.5, 0.025, 0.06]} color="#4eaaa2" />
       <Box position={[1.63, 0.035, 2.72]} size={[2.5, 0.025, 0.06]} color="#dfa346" />
     </group>
   );
@@ -585,13 +581,13 @@ export default function App() {
         <div className="intro-card">
           <p className="eyebrow"><span>01</span> A SMALL BUSINESS, UNDER ONE ROOF</p>
           <h1>Two trades.<br /><em>One corner.</em></h1>
-          <p className="intro-copy">A long neighborhood store leads to a locked, staff-only online service office at the far end.</p>
-          <div className="intro-tags"><span>6.2 × 15 m</span><span>ONE OPEN STORE + PRIVATE OFFICE</span><span>2 PEOPLE</span></div>
+          <p className="intro-copy">A long neighborhood store leads to a small, open service nook at the far end, screened only by waist-high staff partitions.</p>
+          <div className="intro-tags"><span>6.2 × 15 m</span><span>OPEN STORE + WAIST-HIGH PARTITION</span><span>2 PEOPLE</span></div>
         </div>
 
         <div className="area-note area-note-left">
           <span className="note-number">01</span>
-          <div><strong>Online services · locked rear room</strong><small>Staff only · no public entry</small></div>
+          <div><strong>Online services · open service nook</strong><small>Waist-high walls · open above</small></div>
         </div>
         <div className="area-note area-note-right">
           <span className="note-number note-gold">02</span>
@@ -612,7 +608,7 @@ export default function App() {
 
         <div className="scene-caption">
           <span className="caption-line" />
-          <span>ORDERED SHOP AISLES · LOCKED SERVICE OFFICE AT THE FAR END</span>
+          <span>ORDERED SHOP AISLES · OPEN SERVICE NOOK WITH WAIST-HIGH WALLS</span>
         </div>
       </section>
 
